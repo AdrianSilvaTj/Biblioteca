@@ -1,0 +1,9 @@
+<h1>Lista de Libros por Categorias</h1>
+
+<ul>
+    
+    {% for bk in book_list %}
+        <li>{{bk}} - {{bk.date}} - {{bk.category}}</li>
+    {% endfor %}
+        
+</ul>

@@ -1,13 +1,15 @@
 from django.db import models
 
+from .managers import LoanManager
 from applications.book.models import Book
+
 
 # Create your models here.
 class Reader(models.Model):
     first_name = models.CharField('Nombres', max_length=50) 
     last_name = models.CharField('Apellidos', max_length=50)
     nationality = models.CharField('Nacionalidad', max_length=30)
-    edad = models.PositiveIntegerField(default=0)
+    age = models.PositiveIntegerField(default=0)
     
     def __str__(self):
         return self.first_name +' '+ self.last_name
@@ -15,10 +17,17 @@ class Reader(models.Model):
 class Loan(models.Model):
     '''Model definition for Loan.'''
     reader = models.ForeignKey(Reader, on_delete=models.CASCADE, verbose_name='Lector')
-    book = models.ForeignKey(Book, on_delete=models.CASCADE, verbose_name='Titulo del Libro')
+    book = models.ForeignKey(
+        Book, 
+        on_delete=models.CASCADE, 
+        verbose_name='Titulo del Libro',
+        related_name='loan_related'
+    )
     date = models.DateField('Fecha de Préstamo')
     devolution_date = models.DateField('Fecha de Devolución',blank=True,null=True)
     returned = models.BooleanField('Devuelto',default=False)
+    
+    objects = LoanManager()
     
     class Meta:
         '''Meta definition for Loan.'''
