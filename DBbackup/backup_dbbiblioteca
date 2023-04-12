@@ -1,0 +1,460 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 15.2
+-- Dumped by pg_dump version 15.2
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SELECT pg_catalog.set_config('search_path', '', false);
+SET check_function_bodies = false;
+SET xmloption = content;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Data for Name: auth_group; Type: TABLE DATA; Schema: public; Owner: adrian
+--
+
+COPY public.auth_group (id, name) FROM stdin;
+\.
+
+
+--
+-- Data for Name: django_content_type; Type: TABLE DATA; Schema: public; Owner: adrian
+--
+
+COPY public.django_content_type (id, app_label, model) FROM stdin;
+1	admin	logentry
+2	auth	permission
+3	auth	group
+4	auth	user
+5	contenttypes	contenttype
+6	sessions	session
+7	author	author
+8	book	book
+9	book	category
+10	reader	reader
+11	reader	loan
+12	testapp	persona
+13	testapp	empleado
+\.
+
+
+--
+-- Data for Name: auth_permission; Type: TABLE DATA; Schema: public; Owner: adrian
+--
+
+COPY public.auth_permission (id, name, content_type_id, codename) FROM stdin;
+1	Can add log entry	1	add_logentry
+2	Can change log entry	1	change_logentry
+3	Can delete log entry	1	delete_logentry
+4	Can view log entry	1	view_logentry
+5	Can add permission	2	add_permission
+6	Can change permission	2	change_permission
+7	Can delete permission	2	delete_permission
+8	Can view permission	2	view_permission
+9	Can add group	3	add_group
+10	Can change group	3	change_group
+11	Can delete group	3	delete_group
+12	Can view group	3	view_group
+13	Can add user	4	add_user
+14	Can change user	4	change_user
+15	Can delete user	4	delete_user
+16	Can view user	4	view_user
+17	Can add content type	5	add_contenttype
+18	Can change content type	5	change_contenttype
+19	Can delete content type	5	delete_contenttype
+20	Can view content type	5	view_contenttype
+21	Can add session	6	add_session
+22	Can change session	6	change_session
+23	Can delete session	6	delete_session
+24	Can view session	6	view_session
+25	Can add author	7	add_author
+26	Can change author	7	change_author
+27	Can delete author	7	delete_author
+28	Can view author	7	view_author
+29	Can add Libro	8	add_book
+30	Can change Libro	8	change_book
+31	Can delete Libro	8	delete_book
+32	Can view Libro	8	view_book
+33	Can add Categoría	9	add_category
+34	Can change Categoría	9	change_category
+35	Can delete Categoría	9	delete_category
+36	Can view Categoría	9	view_category
+37	Can add reader	10	add_reader
+38	Can change reader	10	change_reader
+39	Can delete reader	10	delete_reader
+40	Can view reader	10	view_reader
+41	Can add Prestamo	11	add_loan
+42	Can change Prestamo	11	change_loan
+43	Can delete Prestamo	11	delete_loan
+44	Can view Prestamo	11	view_loan
+45	Can add Persona	12	add_persona
+46	Can change Persona	12	change_persona
+47	Can delete Persona	12	delete_persona
+48	Can view Persona	12	view_persona
+49	Can add empleado	13	add_empleado
+50	Can change empleado	13	change_empleado
+51	Can delete empleado	13	delete_empleado
+52	Can view empleado	13	view_empleado
+\.
+
+
+--
+-- Data for Name: auth_group_permissions; Type: TABLE DATA; Schema: public; Owner: adrian
+--
+
+COPY public.auth_group_permissions (id, group_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_user; Type: TABLE DATA; Schema: public; Owner: adrian
+--
+
+COPY public.auth_user (id, password, last_login, is_superuser, username, first_name, last_name, email, is_staff, is_active, date_joined) FROM stdin;
+1	pbkdf2_sha256$600000$KrVHdaSU2dC53OtuNThTDB$+1tdTOWL8mhczYaMp1x/D+YlWn2CMD4i1Y2R1m9AxdY=	2023-04-10 15:04:17.193913-05	t	adrian				t	t	2023-04-10 15:04:08.883934-05
+\.
+
+
+--
+-- Data for Name: auth_user_groups; Type: TABLE DATA; Schema: public; Owner: adrian
+--
+
+COPY public.auth_user_groups (id, user_id, group_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: auth_user_user_permissions; Type: TABLE DATA; Schema: public; Owner: adrian
+--
+
+COPY public.auth_user_user_permissions (id, user_id, permission_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: author_author; Type: TABLE DATA; Schema: public; Owner: adrian
+--
+
+COPY public.author_author (id, first_name, last_name, nationality, age) FROM stdin;
+2	Luis	Toro	Peruana	50
+3	Maritza	Beltran	Venezolana	28
+4	Berta	Nuñez	Ecuatoriana	62
+5	Alfonso	Medina	Italiana	70
+1	Ramon	Castillo	Colombiana	48
+6	Ester	Molinero	Cubana	43
+\.
+
+
+--
+-- Data for Name: book_category; Type: TABLE DATA; Schema: public; Owner: adrian
+--
+
+COPY public.book_category (id, name) FROM stdin;
+1	Ciencia Ficción
+2	Drama
+3	Comedia
+4	Infantil
+5	Terror
+\.
+
+
+--
+-- Data for Name: book_book; Type: TABLE DATA; Schema: public; Owner: adrian
+--
+
+COPY public.book_book (id, title, date, image, visits, category_id) FROM stdin;
+1	La Historia del Loco	2022-08-16	book/loco.png	20	3
+2	El Color Perdido	2021-10-19	book/color.jpg	10	4
+3	Memereblo	2010-04-10		57	1
+4	Viaje al centro de la Tierra	2000-05-11		1	1
+5	Atro	2016-10-19		2	1
+6	Universo	2022-09-11		4	1
+7	La Luna	2023-03-06		2	1
+8	La Loca	2002-05-11		45	3
+9	El Coproco	2021-10-22		1	3
+10	Tintirin	1990-09-16		6	3
+11	El Silencio de los inocentes	2022-04-10		6	2
+12	Detras de la Puerta	2003-05-11		2	5
+\.
+
+
+--
+-- Data for Name: book_book_authors; Type: TABLE DATA; Schema: public; Owner: adrian
+--
+
+COPY public.book_book_authors (id, book_id, author_id) FROM stdin;
+1	1	1
+2	1	3
+3	2	3
+4	2	4
+5	3	1
+6	3	2
+7	4	1
+8	5	2
+9	6	6
+10	7	4
+11	8	5
+12	9	1
+13	9	5
+14	10	2
+15	10	3
+16	10	4
+17	11	6
+18	12	1
+19	12	4
+20	12	5
+21	1	2
+\.
+
+
+--
+-- Data for Name: django_admin_log; Type: TABLE DATA; Schema: public; Owner: adrian
+--
+
+COPY public.django_admin_log (id, action_time, object_id, object_repr, action_flag, change_message, content_type_id, user_id) FROM stdin;
+1	2023-04-10 15:08:19.936204-05	1	Ramon Castillo	1	[{"added": {}}]	7	1
+2	2023-04-10 15:08:34.750539-05	2	Luis Toro	1	[{"added": {}}]	7	1
+3	2023-04-10 15:08:53.008775-05	3	Maritza Beltran	1	[{"added": {}}]	7	1
+4	2023-04-10 15:09:12.681073-05	4	Berta Nuñez	1	[{"added": {}}]	7	1
+5	2023-04-10 15:09:36.743986-05	5	Alfonso Medina	1	[{"added": {}}]	7	1
+6	2023-04-10 15:25:25.162252-05	1	Ciencia Ficción	1	[{"added": {}}]	9	1
+7	2023-04-10 15:25:34.166599-05	2	Drama	1	[{"added": {}}]	9	1
+8	2023-04-10 15:25:38.871128-05	3	Comedia	1	[{"added": {}}]	9	1
+9	2023-04-10 15:25:45.179624-05	4	Infantil	1	[{"added": {}}]	9	1
+10	2023-04-10 15:26:07.9324-05	5	Terror	1	[{"added": {}}]	9	1
+11	2023-04-10 16:18:05.984223-05	1	Ramon Castillo	2	[]	7	1
+12	2023-04-10 16:18:26.879109-05	6	Ester Molinero	1	[{"added": {}}]	7	1
+13	2023-04-10 16:32:24.152158-05	1	El loco hugo	1	[{"added": {}}]	8	1
+14	2023-04-10 16:33:03.368511-05	1	La Historia del Loco	2	[{"changed": {"fields": ["Titulo"]}}]	8	1
+15	2023-04-10 16:34:52.005731-05	2	El Color Perdido	1	[{"added": {}}]	8	1
+16	2023-04-10 16:35:34.045995-05	3	Memereblo	1	[{"added": {}}]	8	1
+17	2023-04-10 16:36:11.470798-05	1	Juan Labrosa	1	[{"added": {}}]	10	1
+18	2023-04-10 16:36:46.349855-05	2	Maria Del Carme	1	[{"added": {}}]	10	1
+19	2023-04-10 16:37:11.828997-05	3	Antonio La Rua	1	[{"added": {}}]	10	1
+20	2023-04-10 16:37:27.603994-05	1	La Historia del Loco-->Juan	1	[{"added": {}}]	11	1
+21	2023-04-10 16:37:40.888532-05	2	El Color Perdido-->Antonio	1	[{"added": {}}]	11	1
+22	2023-04-10 16:37:50.968493-05	3	Memereblo-->Antonio	1	[{"added": {}}]	11	1
+23	2023-04-10 16:38:03.483679-05	4	Memereblo-->Maria	1	[{"added": {}}]	11	1
+24	2023-04-11 07:53:38.463468-05	4	Viaje al centro de la Tierra	1	[{"added": {}}]	8	1
+25	2023-04-11 07:54:02.216793-05	5	Atro	1	[{"added": {}}]	8	1
+26	2023-04-11 07:54:23.089013-05	6	Universo	1	[{"added": {}}]	8	1
+27	2023-04-11 07:55:05.929211-05	7	La Luna	1	[{"added": {}}]	8	1
+28	2023-04-11 07:55:31.263612-05	8	La Loca	1	[{"added": {}}]	8	1
+29	2023-04-11 07:55:59.874303-05	9	El Coproco	1	[{"added": {}}]	8	1
+30	2023-04-11 07:56:33.834096-05	10	Tintirin	1	[{"added": {}}]	8	1
+31	2023-04-11 07:57:10.600342-05	11	El Silencio de los inocentes	1	[{"added": {}}]	8	1
+32	2023-04-11 07:57:44.048113-05	12	Detras de la Puerta	1	[{"added": {}}]	8	1
+33	2023-04-11 10:00:29.807867-05	5	Memereblo-->Maria	1	[{"added": {}}]	11	1
+34	2023-04-11 10:00:45.09626-05	6	Memereblo-->Antonio	1	[{"added": {}}]	11	1
+35	2023-04-11 10:00:53.572095-05	7	Universo-->Juan	1	[{"added": {}}]	11	1
+36	2023-04-11 10:01:07.349861-05	8	Universo-->Maria	1	[{"added": {}}]	11	1
+37	2023-04-11 10:01:21.692734-05	9	La Historia del Loco-->Antonio	1	[{"added": {}}]	11	1
+38	2023-04-11 10:01:38.083194-05	10	La Historia del Loco-->Maria	1	[{"added": {}}]	11	1
+39	2023-04-11 10:01:48.899575-05	11	Tintirin-->Juan	1	[{"added": {}}]	11	1
+40	2023-04-11 11:27:46.838069-05	12	La Historia del Loco-->Maria	1	[{"added": {}}]	11	1
+41	2023-04-11 16:42:01.439029-05	1	Pedro	1	[{"added": {}}]	12	1
+\.
+
+
+--
+-- Data for Name: django_migrations; Type: TABLE DATA; Schema: public; Owner: adrian
+--
+
+COPY public.django_migrations (id, app, name, applied) FROM stdin;
+1	contenttypes	0001_initial	2023-04-10 13:32:21.433819-05
+2	auth	0001_initial	2023-04-10 13:32:21.526157-05
+3	admin	0001_initial	2023-04-10 13:32:21.556815-05
+4	admin	0002_logentry_remove_auto_add	2023-04-10 13:32:21.563799-05
+5	admin	0003_logentry_add_action_flag_choices	2023-04-10 13:32:21.568787-05
+6	contenttypes	0002_remove_content_type_name	2023-04-10 13:32:21.582946-05
+7	auth	0002_alter_permission_name_max_length	2023-04-10 13:32:21.589648-05
+8	auth	0003_alter_user_email_max_length	2023-04-10 13:32:21.597119-05
+9	auth	0004_alter_user_username_opts	2023-04-10 13:32:21.602473-05
+10	auth	0005_alter_user_last_login_null	2023-04-10 13:32:21.611753-05
+11	auth	0006_require_contenttypes_0002	2023-04-10 13:32:21.613064-05
+12	auth	0007_alter_validators_add_error_messages	2023-04-10 13:32:21.618463-05
+13	auth	0008_alter_user_username_max_length	2023-04-10 13:32:21.631495-05
+14	auth	0009_alter_user_last_name_max_length	2023-04-10 13:32:21.639065-05
+15	auth	0010_alter_group_name_max_length	2023-04-10 13:32:21.646672-05
+16	auth	0011_update_proxy_permissions	2023-04-10 13:32:21.653312-05
+17	auth	0012_alter_user_first_name_max_length	2023-04-10 13:32:21.661889-05
+18	sessions	0001_initial	2023-04-10 13:32:21.678752-05
+19	author	0001_initial	2023-04-10 14:39:59.171139-05
+20	book	0001_initial	2023-04-10 14:39:59.211861-05
+21	reader	0001_initial	2023-04-10 14:39:59.239905-05
+22	author	0002_rename_edad_author_age	2023-04-10 16:02:04.341977-05
+23	book	0002_alter_book_image	2023-04-11 08:27:20.070658-05
+24	book	0003_alter_book_category	2023-04-11 09:18:54.536969-05
+25	reader	0002_alter_loan_book	2023-04-11 10:14:51.290973-05
+26	reader	0003_rename_edad_reader_age	2023-04-11 10:51:17.886182-05
+27	book	0004_alter_book_options	2023-04-11 16:29:14.947842-05
+28	testapp	0001_initial	2023-04-11 16:29:14.993554-05
+29	testapp	0002_alter_persona_unique_together_persona_edad_mayor_18	2023-04-11 16:38:31.741593-05
+30	testapp	0003_empleado	2023-04-11 16:46:15.183286-05
+\.
+
+
+--
+-- Data for Name: django_session; Type: TABLE DATA; Schema: public; Owner: adrian
+--
+
+COPY public.django_session (session_key, session_data, expire_date) FROM stdin;
+z1pd7tdrwo7sye39by3emkj1p79kmfmu	.eJxVjMsOwiAQRf-FtSG8EZfu_QYyA4NUDSSlXRn_3TbpQrf3nHPfLMK61LgOmuOU2YVJdvrdENKT2g7yA9q989TbMk_Id4UfdPBbz_S6Hu7fQYVRtxrIyODL2aGW3uriRFZCERoIqLB4lF6l5IoAiRs0NmgyBTA452WwiX2-4OU30A:1plxkP:Kn5wqkJ_TG2nTvLglPjIzt4UZFBxRrF62GdaaghUhto	2023-04-24 15:04:17.19811-05
+\.
+
+
+--
+-- Data for Name: reader_reader; Type: TABLE DATA; Schema: public; Owner: adrian
+--
+
+COPY public.reader_reader (id, first_name, last_name, nationality, age) FROM stdin;
+1	Juan	Labrosa	Venezolana	30
+2	Maria	Del Carme	Checoslovaca	51
+3	Antonio	La Rua	Mexicana	36
+\.
+
+
+--
+-- Data for Name: reader_loan; Type: TABLE DATA; Schema: public; Owner: adrian
+--
+
+COPY public.reader_loan (id, date, devolution_date, returned, book_id, reader_id) FROM stdin;
+1	2023-04-10	\N	f	1	1
+2	2023-04-10	2023-04-10	t	2	3
+3	2023-04-10	\N	f	3	3
+4	2022-09-12	\N	f	3	2
+5	2023-04-11	\N	f	3	2
+6	2022-12-12	\N	f	3	3
+7	2023-04-11	\N	f	6	1
+8	2022-06-19	\N	f	6	2
+9	2022-06-06	\N	f	1	3
+10	2022-09-12	2023-04-11	f	1	2
+11	2023-04-11	2023-04-11	f	10	1
+12	2023-04-11	2023-04-11	f	1	2
+\.
+
+
+--
+-- Data for Name: testapp_empleado; Type: TABLE DATA; Schema: public; Owner: adrian
+--
+
+COPY public.testapp_empleado (persona_ptr_id, empleo) FROM stdin;
+\.
+
+
+--
+-- Name: auth_group_id_seq; Type: SEQUENCE SET; Schema: public; Owner: adrian
+--
+
+SELECT pg_catalog.setval('public.auth_group_id_seq', 1, false);
+
+
+--
+-- Name: auth_group_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: adrian
+--
+
+SELECT pg_catalog.setval('public.auth_group_permissions_id_seq', 1, false);
+
+
+--
+-- Name: auth_permission_id_seq; Type: SEQUENCE SET; Schema: public; Owner: adrian
+--
+
+SELECT pg_catalog.setval('public.auth_permission_id_seq', 52, true);
+
+
+--
+-- Name: auth_user_groups_id_seq; Type: SEQUENCE SET; Schema: public; Owner: adrian
+--
+
+SELECT pg_catalog.setval('public.auth_user_groups_id_seq', 1, false);
+
+
+--
+-- Name: auth_user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: adrian
+--
+
+SELECT pg_catalog.setval('public.auth_user_id_seq', 1, true);
+
+
+--
+-- Name: auth_user_user_permissions_id_seq; Type: SEQUENCE SET; Schema: public; Owner: adrian
+--
+
+SELECT pg_catalog.setval('public.auth_user_user_permissions_id_seq', 1, false);
+
+
+--
+-- Name: author_author_id_seq; Type: SEQUENCE SET; Schema: public; Owner: adrian
+--
+
+SELECT pg_catalog.setval('public.author_author_id_seq', 6, true);
+
+
+--
+-- Name: book_book_authors_id_seq; Type: SEQUENCE SET; Schema: public; Owner: adrian
+--
+
+SELECT pg_catalog.setval('public.book_book_authors_id_seq', 21, true);
+
+
+--
+-- Name: book_book_id_seq; Type: SEQUENCE SET; Schema: public; Owner: adrian
+--
+
+SELECT pg_catalog.setval('public.book_book_id_seq', 12, true);
+
+
+--
+-- Name: book_category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: adrian
+--
+
+SELECT pg_catalog.setval('public.book_category_id_seq', 5, true);
+
+
+--
+-- Name: django_admin_log_id_seq; Type: SEQUENCE SET; Schema: public; Owner: adrian
+--
+
+SELECT pg_catalog.setval('public.django_admin_log_id_seq', 41, true);
+
+
+--
+-- Name: django_content_type_id_seq; Type: SEQUENCE SET; Schema: public; Owner: adrian
+--
+
+SELECT pg_catalog.setval('public.django_content_type_id_seq', 13, true);
+
+
+--
+-- Name: django_migrations_id_seq; Type: SEQUENCE SET; Schema: public; Owner: adrian
+--
+
+SELECT pg_catalog.setval('public.django_migrations_id_seq', 30, true);
+
+
+--
+-- Name: reader_loan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: adrian
+--
+
+SELECT pg_catalog.setval('public.reader_loan_id_seq', 12, true);
+
+
+--
+-- Name: reader_reader_id_seq; Type: SEQUENCE SET; Schema: public; Owner: adrian
+--
+
+SELECT pg_catalog.setval('public.reader_reader_id_seq', 3, true);
+
+
+--
+-- PostgreSQL database dump complete
+--
+

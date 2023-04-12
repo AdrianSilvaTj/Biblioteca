@@ -13,13 +13,13 @@ class Persona(models.Model):
 
         verbose_name = 'Persona'
         verbose_name_plural = 'Personas'
-        db_table = 'persona' # define el nombre exacto de la tabla en base de datos
+        #db_table = 'persona' # define el nombre exacto de la tabla en base de datos
         unique_together = ['pais','apelativo'] # no permite que se repita la misma combinación de datos en esos campos
         
         # constraints, realiza validaciones
-        constraints = [
-            models.CheckConstraint(check=models.Q(edad__gte=18), name='edad_mayor_18')
-        ]
+        # constraints = [
+        #     models.CheckConstraint(check=models.Q(edad__gte=18), name='edad_mayor_18')
+        # ]
         abstract = True # Especifica que la clase es abstracta o Padre, y no se creara en la db
 
     def __str__(self):

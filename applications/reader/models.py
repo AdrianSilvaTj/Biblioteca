@@ -1,18 +1,14 @@
 from django.db import models
 
-from .managers import LoanManager
+from applications.author.models import Person
 from applications.book.models import Book
+from .managers import LoanManager
 
-
-# Create your models here.
-class Reader(models.Model):
-    first_name = models.CharField('Nombres', max_length=50) 
-    last_name = models.CharField('Apellidos', max_length=50)
-    nationality = models.CharField('Nacionalidad', max_length=30)
-    age = models.PositiveIntegerField(default=0)
-    
-    def __str__(self):
-        return self.first_name +' '+ self.last_name
+class Reader(Person):
+    email = models.EmailField('Email', max_length=254, blank=True, null=True)
+    class Meta:        
+        verbose_name = 'Lector'
+        verbose_name_plural = 'Lectores'
     
 class Loan(models.Model):
     '''Model definition for Loan.'''
@@ -37,3 +33,9 @@ class Loan(models.Model):
     def __str__(self):
         return self.book.title +'-->'+self.reader.first_name
 
+    def save(self, *args, **kwargs):
+        """ Resta al estock del libro al momento de guardar el prestamo """
+        print ('Entro en save--------------')
+        self.book.stock = self.book.stock -1
+        self.book.save()        
+        return super(Loan, self).save(*args, **kwargs)
