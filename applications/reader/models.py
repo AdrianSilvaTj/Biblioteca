@@ -1,8 +1,11 @@
 from django.db import models
+from django.db.models.signals import post_delete
 
 from applications.author.models import Person
 from applications.book.models import Book
+
 from .managers import LoanManager
+from .signals import update_book_stock
 
 class Reader(Person):
     email = models.EmailField('Email', max_length=254, blank=True, null=True)
@@ -39,3 +42,8 @@ class Loan(models.Model):
         self.book.stock = self.book.stock -1
         self.book.save()        
         return super(Loan, self).save(*args, **kwargs)
+    
+    
+
+""" Signal al borrar u registro de Loan """    
+post_delete.connect(update_book_stock, sender=Loan)
